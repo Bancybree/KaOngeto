@@ -2,14 +2,14 @@
 session_start();
 include "includes/constant.php";
 if (!(isset($_SESSION["control"]["UserType"]) && $_SESSION["control"]["UserType"] == SUPER_USER)) {
-    header("Location: ../IP-Project/");
+    header("Location: ../Project/");
     exit();
 }
 require_once "includes/session_control.php";
 require_once "includes/db_connect.php";
 
 include "templates/header.php";
-include "templates/nav.php";
+include "templates/sunav.php";
 ?>
 
 

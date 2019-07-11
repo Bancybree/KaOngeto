@@ -6,9 +6,7 @@
 	include "templates/nav.php";
 
 ?>
-    <main role="main">
-
-      <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div>
       <div class="jumbotron">
         <div class="container">
           <h1 class="display-3">Blog Articles</h1>
@@ -16,28 +14,27 @@
       </div>
 
       <div class="container">
-        <!-- Example row of columns -->
         <div class="row">
 <?php
-
-if (isset($_GET["articleId"])){
-	$articleId = $_GET["articleId"];
+if (isset($_GET["Article_id"])){
+	$articleId = $_GET["Article_id"];
 	
-    $select_art = "SELECT * FROM articles LEFT JOIN users ON (users.`userId` = articles.`article_authorId`) WHERE articleId = '$articleId' LIMIT 1";
+    $select_art = "SELECT * FROM articles LEFT JOIN users ON (users.`UserId` = articles.Author_id) WHERE Article_id = '$Articleid' LIMIT 1";
 	
 	$art_res = $DbConn->query($select_art);
 	
-    if ($art_res->num_rows > 0){ //Verifying if at least one row (num_rows or in other words number_of_rows is greater than (>) zero ) was found as a result of the select query above.
+	// Counts 1 and Displays Articles 
+    if ($art_res->num_rows > 0){ 
         
         $art_row = $art_res->fetch_assoc();
 ?>
         <div class="row">
           <div class="col-md-8">
-            <h2><?php print $art_row["article_title"]; ?></h2>
+            <h2><?php print $art_row["Article_title"]; ?></h2>
            
-           <h6>Published on: <?php print date("jS F Y", $art_row["article_publication_date"]); ?> by <?php print $art_row["fullName"]; ?></h6>
+           <h6>Published on: <?php print date("jS F Y", $art_row["Article_created_date"]); ?> by <?php print $art_row["Full_Name"]; ?></h6>
 
-		     <p><?php print $art_row["article_full_text"]; ?></p>
+		     <p><?php print $art_row["Article_full_text"]; ?></p>
 		   
           </div>
           <div class="col-md-4">
@@ -52,30 +49,13 @@ if (isset($_GET["articleId"])){
 		exit();
 }
 }else{
-    /*****
-		The $select_art query below has a MySQL JOIN syntax. This means we're selecting data from 2 different tables using a joint or a reference key, a foreign key. Remember the author's details are stored in users table and the articles are stored in the articles table. It is therefore important to select data while matching "users.`userId` with corresponding articles.`article_authorId`" For us to be able to match the article to the author (owner).	
-    *****/
-    $select_art = "SELECT * FROM articles LEFT JOIN users ON (users.`userId` = articles.`article_authorId`)";
+    $select_art = "SELECT * FROM articles LEFT JOIN users ON (users.UserId = articles.Author_id)";
     
-    /*****
-    After database DbConnection using new mysqli method, database DbDbDbDbDbConnection object is returned. A query ($select_art) is passed to DbDbDbDbDbConnection object's query method. This function returns a result set. Here we call it Article results or $art_res
-    *****/
     $art_res = $DbConn->query($select_art);
 	
-	
-    if ($art_res->num_rows > 0){ //Verifying if at least one row (num_rows or in other words number_of_rows is greater than (>) zero ) was found as a result of the select query above.
-        
+    if ($art_res->num_rows > 0){ 
         while($art_row = $art_res->fetch_assoc()){
-			
-	/******
-	Likewise procedural way a row from result set is fetched using a fetch_assoc() method.
-
-	This method returns a single row of result, so we use a while loop to fetch all rows in result set. In here, column names are used as array indexes to access result like an article title we do $art_row["article_title"]
-	
-	See example on for MySQLi Object-oriented: https://www.w3schools.com/php/php_mysql_select.asp
-	
-	******/
-        ?>
+?>
                   <div class="col-md-4">
             <h2><?php print $art_row["article_title"]; ?></h2>
            
@@ -90,7 +70,7 @@ if (isset($_GET["articleId"])){
             
 			<p><?php print $shown_string; //Print the sliced array ?></p>
 		
-            <p><a class="btn btn-secondary" href="view_art.php?articleId=<?php print $art_row["articleId"]; ?>" role="button">Read more</a></p>
+            <p><a class="btn btn-secondary" href="view_art.php?Article_id=<?php print $art_row["Article_id"]; ?>" role="button">Read more</a></p>
         </div>
         <?php
         }         
@@ -101,11 +81,8 @@ if (isset($_GET["articleId"])){
 }	
 ?>
         </div>
-
-        <hr />
-        <hr />
-
-      </div> <!-- /container -->
+      </div>
+	  <div/>
 <?php
 	include "templates/footer.php";
 ?>

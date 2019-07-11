@@ -2,14 +2,14 @@
 session_start();
 include "includes/constant.php";
 if (!(isset($_SESSION["control"]["UserType"]) && $_SESSION["control"]["UserType"] == ADMIN_USER)) {
-    header("Location: ../IP-Project/");
+    header("Location: ../Project/");
     exit();
 }
 require_once "includes/session_control.php";
 require_once "includes/db_connect.php";
 
 include "templates/header.php";
-include "templates/nav.php";
+include "templates/adminnav.php";
 ?>
 
 
@@ -30,7 +30,7 @@ include "templates/nav.php";
                     </a>
                 </div>
                 <div class="col-md-3">
-                    <a href="#" class="btn btn-sq-lg btn-warning">
+                    <a href="manage_authors.php" class="btn btn-sq-lg btn-warning">
                         <i class="fa fa-user fa-5x"></i><br/>
                         Manage Authors
                     </a>

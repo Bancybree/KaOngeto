@@ -6,13 +6,23 @@ require_once "includes/session_control.php";
 require_once "includes/db_connect.php";
 
 include "templates/header.php";
-include "templates/nav.php";
+include "templates/sunav.php";
 ?>
+<div>
 <div class="jumbotron">
             <div class="container">
                 <h1 class="display-3">Super User Control Panel</h1>
             </div>
         </div>
+		
+		<div class="container">
+		<div>
+		<h1> User List </h1>
+		</div>
+		
+		<div class="container">
+		<a class = "button" href = "add_user.php" >Add A New User </a></br>
+		</div>
 		
 		<div class="container">
 		<table>
@@ -50,20 +60,19 @@ include "templates/nav.php";
 								
 								<td>
 									
-									<form method='POST' action='DelUser.php'>
-										<button type='submit' name='delete' value='$row[UserId]'>Delete</button>
+									<form method='POST' action='data_process/processes.php'>
 										
+										<input class='btn btn-primary' type='submit' name='DELETE' value='Delete'>
 									</form>	
 									
 								</td>	
 									
 								<td>
-									<form method='POST' action='UpdateUser.php'>
-										<button type='submit' name='updateuser' value='$row[UserId]'>Update</button>
+									<form method='POST' action='data_process/update_processes.php'>
+									<input class='btn btn-primary' type='submit' name='UPDATEUSER' value='Update' />
+										
 										
 									</form>	
-									
-								    
 									
 								</td>
 							</tr>
@@ -75,9 +84,9 @@ include "templates/nav.php";
                 ?>
 			</tbody>
 		</table>
+		</div>
 		
-		<br><a class = "button" href = "AddUser.php" >Add User </a></br>
-		
+
 		
 	          </div>
 			  </div>

@@ -1,16 +1,12 @@
 <?php
 session_start();
 include "includes/constant.php";
-if (!(isset($_SESSION["control"]["UserType"]) && $_SESSION["control"]["UserType"] == AUTHOR_USER)) {
-    header("Location: ../IP-Project/");
-    exit();
-}
 
 require_once "includes/session_control.php";
 require_once "includes/db_connect.php";
 
 include "templates/header.php";
-include "templates/nav.php";
+include "templates/authnav.php";
 ?>
 
     <main role="main">
@@ -27,8 +23,8 @@ include "templates/nav.php";
             <div class="row">
 
                 <div class="col-md-3">
-                    <a href="manage_profile.php" class="btn btn-sq-lg btn-primary">
-                        <i class="fa fa-address-book fa-5x"></i><br/>
+                    <a href="manage_author_profile.php" class="btn btn-sq-lg btn-primary">
+                        <i class="fa fa-user fa-5x"></i><br/>
                         Manage My Profile
                     </a>
                 </div>
@@ -46,7 +42,7 @@ include "templates/nav.php";
                 </div>
                 <div class="col-md-3">
                     <a href="data_process/signout.php" class="btn btn-sq-lg btn-danger">
-                        <i class="fa fa-user fa-5x"></i><br/>
+                        <i class="fa fa-sign-out fa-5x"></i><br/>
                         Logout
                     </a>
                 </div>

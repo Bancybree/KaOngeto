@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="images/icon/icon.png">
 
-    <title>Makeup CAT</title>
+    <title>Information Application</title>
 
     <link href="css/style.css" rel="stylesheet" />
   </head>
